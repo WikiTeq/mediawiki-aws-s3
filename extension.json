@@ -86,6 +86,10 @@
 		"AWSLocalCacheExcludeFileExtensions": {
 			"description": "File extensions (e.g. 'ogg') of files that shouldn't be stored in the local cache. Recommended values: every non-image (files that are never used to make a thumbnail).",
 			"value": [ "ogg" ]
+		},
+		"AWSCustomEndpoint": {
+			"Description": "Sets custom endpoint instead of using s3.amazonaws.com",
+			"value": ""
 		}
 	},
 	"manifest_version": 2

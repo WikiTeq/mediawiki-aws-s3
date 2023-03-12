@@ -107,7 +107,7 @@ class AmazonS3FileBackend extends FileBackendStore {
 	 * @throws AmazonS3MisconfiguredException if no containerPaths is set
 	 */
 	public function __construct( array $config ) {
-		global $wgAWSCredentials, $wgAWSRegion, $wgAWSUseHTTPS;
+		global $wgAWSCredentials, $wgAWSRegion, $wgAWSUseHTTPS, $wgAWSCustomEndpoint;
 
 		parent::__construct( $config );
 
@@ -143,6 +143,11 @@ class AmazonS3FileBackend extends FileBackendStore {
 		}
 		if ( isset( $config['use_path_style_endpoint'] ) ) {
 			$params['use_path_style_endpoint'] = $config['use_path_style_endpoint'];
+		}
+
+		if ( !empty( $wgAWSCustomEndpoint) ) {
+			$params['endpoint'] = $wgAWSCustomEndpoint;
+			$params['use_path_style_endpoint'] = true;
 		}
 
 		$this->client = new S3Client( $params );
